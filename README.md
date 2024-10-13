@@ -8,18 +8,18 @@ Only implemented for PNG image.
 
 ### Install dependencies
 
-#### MacOS (Xcode should be installed)
+#### MacOS
 
 - Xcode
 - C libs
   ```shell
-  brew install cimg libpng
+  brew install libpng
   ```
 
 #### Ubuntu
 
 ```shell
-sudo apt-get update && sudo apt-get install -y build-essential cimg-dev libpng-dev
+sudo apt-get update && sudo apt-get install -y build-essential libpng-dev
 ```
 
 ### Build

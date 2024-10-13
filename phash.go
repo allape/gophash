@@ -22,6 +22,8 @@ extern uint8_t *ph_mh_imagehash(const char *filename, int *N, float alpha, float
 */
 import "C"
 
+const HashByteLength = 72
+
 type PHash struct {
 	hash.Hash
 
@@ -33,7 +35,7 @@ type PHash struct {
 }
 
 func (d *PHash) Size() int {
-	return 72 // ulong64
+	return HashByteLength
 }
 
 func (d *PHash) BlockSize() int {
@@ -102,5 +104,22 @@ func New(filename string, logger *log.Logger) *PHash {
 	return &PHash{
 		Logger:   logger,
 		Filename: filename,
+		Alpha:    2.0,
+		Level:    1.0,
 	}
+}
+
+func Distance(hash1, hash2 []byte) (float64, error) {
+	if len(hash1) != HashByteLength || len(hash2) != HashByteLength {
+		return 0, fmt.Errorf("hash length should be %d", HashByteLength)
+	}
+
+	distance := float64(C.ph_hammingdistance2(
+		(*C.uint8_t)(&hash1[0]),
+		C.int(len(hash1)),
+		(*C.uint8_t)(&hash2[0]),
+		C.int(len(hash2)),
+	))
+
+	return distance, nil
 }

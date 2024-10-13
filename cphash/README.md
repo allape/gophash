@@ -9,7 +9,7 @@ https://github.com/aetilius/pHash?tab=GPL-3.0-1-ov-file#readme
 ### Dependencies
 
 ```shell
-brew install cimg libpng
+brew install libpng
 ```
 
 ### Shared library

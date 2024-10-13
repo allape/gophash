@@ -33,7 +33,9 @@
 
 #include "CImg.h"
 #include <cstdint>
+#include <cmath>
 
+using namespace std;
 using namespace cimg_library;
 
 int ph_bitcount8(uint8_t val) {
