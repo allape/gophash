@@ -1,45 +1,16 @@
-# gophash
+# Perceptual Hash Dev Container
 
-Perceptual hash in golang with CGO.
+Dev container for [pHash](https://github.com/allape/pHash)
 
-Only implemented for PNG image.
+## pHash License
 
-## Usage
+https://github.com/aetilius/pHash?tab=GPL-3.0-1-ov-file
 
-### Install dependencies
+## FAQ
 
-#### MacOS
-
-- Xcode
-- C libs
-  ```shell
-  brew install libpng
-  ```
-
-#### Ubuntu
-
-```shell
-sudo apt-get update && sudo apt-get install -y build-essential libpng-dev
-```
-
-### Build
-
-```shell
-git clone https://github.com/allape/gophash.git
-cd gophash/cphash
-g++ -c -fPIC phash.cpp -o phash.o
-g++ -lpng -shared -o libphash.so phash.o
-cp libphash.so /usr/local/lib/libphash.so
-```
-
-### FAQ
-
-- `Library not loaded: libphash.so`.
-    - Put libphash.so in the root directory of your project.
-      ```shell
-      cp /usr/local/lib/libphash.so /path/to/your/project
-      ```
-
-### License for C language source code
-
-https://github.com/aetilius/pHash?tab=GPL-3.0-1-ov-file#readme
+- The git config will be copied into container.
+  - If you set the proxy with 127.0.0.1, then you need to change it with
+    ```shell
+    git config --global http.proxy http://ip:1080
+    git config --global https.proxy https://ip:1080
+    ```

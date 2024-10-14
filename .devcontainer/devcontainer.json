@@ -1,0 +1,7 @@
+{
+  "name": "gophash",
+  "dockerComposeFile": "docker-compose.devcontainer.yml",
+  "service": "workspace",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose"
+}
