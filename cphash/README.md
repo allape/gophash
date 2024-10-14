@@ -19,3 +19,10 @@ rm -f phash.o libphash.so
 g++ -c -fPIC phash.cpp -o phash.o
 g++ -lpng -shared -o libphash.so phash.o
 ```
+
+### Print Image Hash
+
+```shell
+g++ -L. -lphash -lpng -o app main.cpp
+./app ../testdata/pHash.png
+```

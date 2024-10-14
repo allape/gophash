@@ -81,12 +81,12 @@ extern "C" {
         return dist / bits;
     }
 
-    uint8_t *ph_mh_imagehash(const char *filename, int &N, float alpha, float lvl) {
+    uint8_t *ph_mh_imagehash(const char *filename, int *N, float alpha, float lvl) {
         if (filename == NULL) {
             return NULL;
         }
         uint8_t *hash = (unsigned char *)malloc(72 * sizeof(uint8_t));
-        N = 72;
+        *N = 72;
 
         CImg<uint8_t> src(filename);
         CImg<uint8_t> img;

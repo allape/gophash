@@ -12,7 +12,7 @@ import (
 )
 
 /*
-#cgo LDFLAGS: -L/usr/local/lib -lphash -lstdc++
+#cgo LDFLAGS: -L/usr/local/lib -lphash -lpng -lstdc++
 #cgo CXXFLAGS: -std=c++11
 
 #include <stdint.h>
