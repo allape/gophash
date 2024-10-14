@@ -46,7 +46,8 @@ func TestLogoPNG(t *testing.T) {
 	hexedHash := hex.EncodeToString(phash.Sum(nil))
 
 	if hexedHash != LogoPNGPHash {
-		t.Errorf("Expected hash to be %s, got %s", LogoPNGPHash, hexedHash)
+		dis, _ := DistanceBetweenHexString(LogoPNGPHash, hexedHash)
+		t.Errorf("Expected hash to be %s, got %s, hash distance: %f", LogoPNGPHash, hexedHash, dis)
 	}
 }
 
@@ -58,22 +59,13 @@ func TestMaskedLogoPNG(t *testing.T) {
 	hexedHash := hex.EncodeToString(phash.Sum(nil))
 
 	if hexedHash != MaskedLogoPNGPHash {
-		t.Errorf("Expected hash to be %s, got %s", MaskedLogoPNGPHash, hexedHash)
+		dis, _ := DistanceBetweenHexString(MaskedLogoPNGPHash, hexedHash)
+		t.Errorf("Expected hash to be %s, got %s, hash distance: %f", MaskedLogoPNGPHash, hexedHash, dis)
 	}
 }
 
 func TestDistance(t *testing.T) {
-	logo, err := hex.DecodeString(LogoPNGPHash)
-	if err != nil {
-		t.Error(err)
-	}
-
-	maskedLogo, err := hex.DecodeString(MaskedLogoPNGPHash)
-	if err != nil {
-		t.Error(err)
-	}
-
-	dis, err := Distance(logo, maskedLogo)
+	dis, err := DistanceBetweenHexString(LogoPNGPHash, MaskedLogoPNGPHash)
 	if err != nil {
 		t.Error(err)
 	}
@@ -83,4 +75,15 @@ func TestDistance(t *testing.T) {
 	if dis != DistanceBetweenLogoAndMaskedLogo {
 		t.Errorf("Expected distance to be %f, but got %f", DistanceBetweenLogoAndMaskedLogo, dis)
 	}
+}
+
+func TestA(t *testing.T) {
+	dis, err := DistanceBetweenHexString(
+		"0001c03f89c1e392042486c7eff9f9fe7ee32436c0000000000152b2b6c000000000016960b6c00000000000b62431ff00ee701c0f9400b252f272783c0c00b2dac7ecc4bdaf6d24",
+		"000002df89c1e212310d6e233b9e302fe2e376471dd95119f2a552b2dc550ab4b16ad96df0acef67151c39c4ab4461f70ce73238b900024b12f2727cb82404b2dac7adc4bdaf64db",
+	)
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log("distance: ", dis)
 }

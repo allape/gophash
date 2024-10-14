@@ -2,6 +2,7 @@ package gophash
 
 import (
 	"bytes"
+	"encoding/hex"
 	"fmt"
 	"hash"
 	"io"
@@ -122,4 +123,18 @@ func Distance(hash1, hash2 []byte) (float64, error) {
 	))
 
 	return distance, nil
+}
+
+func DistanceBetweenHexString(hex1, hex2 string) (float64, error) {
+	hash1, err := hex.DecodeString(hex1)
+	if err != nil {
+		return 0, err
+	}
+
+	hash2, err := hex.DecodeString(hex2)
+	if err != nil {
+		return 0, err
+	}
+
+	return Distance(hash1, hash2)
 }
