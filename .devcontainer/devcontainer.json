@@ -1,7 +1,5 @@
 {
   "name": "gophash",
-  "dockerComposeFile": "docker-compose.devcontainer.yml",
-  "service": "workspace",
+  "image": "allape/gophash",
   "workspaceFolder": "/workspace",
-  "shutdownAction": "stopCompose"
 }
